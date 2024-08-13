@@ -766,7 +766,7 @@ impl WindowState {
     ) -> Result<(), Box<dyn Error>> {
         let cursor = event_loop.create_custom_cursor(url_custom_cursor())?;
 
-        self.window.set_cursor(cursor);
+        self.window.set_cursor(cursor.into());
 
         Ok(())
     }
@@ -788,7 +788,7 @@ impl WindowState {
         let cursor = CustomCursor::from_animation(Duration::from_secs(3), cursors).unwrap();
         let cursor = event_loop.create_custom_cursor(cursor)?;
 
-        self.window.set_cursor(cursor);
+        self.window.set_cursor(cursor.into());
 
         Ok(())
     }

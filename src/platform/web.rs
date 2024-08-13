@@ -104,22 +104,34 @@ pub trait WindowExtWeb {
     fn is_cursor_lock_raw(&self) -> bool;
 }
 
-impl WindowExtWeb for Window {
+impl WindowExtWeb for dyn Window + '_ {
     #[inline]
     fn canvas(&self) -> Option<Ref<'_, HtmlCanvasElement>> {
-        self.window.canvas()
+        self.as_any()
+            .downcast_ref::<crate::platform_impl::Window>()
+            .expect("non Web window on Web")
+            .canvas()
     }
 
     fn prevent_default(&self) -> bool {
-        self.window.prevent_default()
+        self.as_any()
+            .downcast_ref::<crate::platform_impl::Window>()
+            .expect("non Web window on Web")
+            .prevent_default()
     }
 
     fn set_prevent_default(&self, prevent_default: bool) {
-        self.window.set_prevent_default(prevent_default)
+        self.as_any()
+            .downcast_ref::<crate::platform_impl::Window>()
+            .expect("non Web window on Web")
+            .set_prevent_default(prevent_default)
     }
 
     fn is_cursor_lock_raw(&self) -> bool {
-        self.window.is_cursor_lock_raw()
+        self.as_any()
+            .downcast_ref::<crate::platform_impl::Window>()
+            .expect("non Web window on Web")
+            .is_cursor_lock_raw()
     }
 }
 
