@@ -2,8 +2,10 @@ use std::future;
 use std::rc::Rc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::{self, RecvError, SendError, TryRecvError};
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 use std::task::Poll;
+
+use wasm_sync::Mutex;
 
 use super::AtomicWaker;
 
