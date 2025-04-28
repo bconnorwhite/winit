@@ -1,7 +1,7 @@
 use std::cell::{Cell, RefCell};
 use std::ops::Deref;
 use std::rc::Rc;
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 
 use smol_str::SmolStr;
 use wasm_bindgen::closure::Closure;
@@ -10,6 +10,7 @@ use web_sys::{
     CssStyleDeclaration, Document, Event, FocusEvent, HtmlCanvasElement, KeyboardEvent, Navigator,
     PointerEvent, WheelEvent,
 };
+use wasm_sync::Mutex;
 
 use super::super::cursor::CursorHandler;
 use super::super::event::{DeviceId, FingerId};
