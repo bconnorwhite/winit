@@ -1,12 +1,9 @@
 [package]
 categories = ["gui"]
 description = "Types for handling UI scaling"
-edition.workspace = true
+edition = "2021"
 keywords = ["DPI", "HiDPI", "scale-factor"]
-license.workspace = true
 name = "dpi"
-repository.workspace = true
-rust-version.workspace = true
 version = "0.1.1"
 
 [features]
@@ -14,8 +11,8 @@ mint = ["dep:mint"]
 serde = ["dep:serde"]
 
 [dependencies]
-mint = { workspace = true, optional = true }
-serde = { workspace = true, optional = true }
+mint = { version = "0.5.6", optional = true }
+serde = { version = "1", features = ["serde_derive"], optional = true }
 
 [package.metadata.docs.rs]
 features = ["mint", "serde"]

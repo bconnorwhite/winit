@@ -3,7 +3,7 @@ authors = ["The winit contributors", "Pierre Krieger <pierre.krieger1708@gmail.c
 categories = ["gui"]
 description = "Cross-platform window creation library."
 documentation = "https://docs.rs/winit"
-edition.workspace = true
+edition = "2021"
 include = [
     "/build.rs",
     "/docs",
@@ -16,11 +16,8 @@ include = [
     "/tests",
 ]
 keywords = ["windowing"]
-license.workspace = true
 name = "winit"
 readme = "README.md"
-repository.workspace = true
-rust-version.workspace = true
 version = "0.30.5"
 
 [package.metadata.docs.rs]
@@ -82,7 +79,7 @@ bitflags = "2"
 cursor-icon = "1.1.0"
 dpi = { version = "0.1.1", path = "dpi" }
 rwh_06 = { package = "raw-window-handle", version = "0.6", features = ["std"], optional = true }
-serde = { workspace = true, optional = true }
+serde = { version = "1", features = ["serde_derive"], optional = true }
 smol_str = "0.2.0"
 tracing = { version = "0.1.40", default-features = false }
 
@@ -348,17 +345,3 @@ required-features = ["rwh_06"]
 [[example]]
 name = "child_window"
 required-features = ["rwh_06"]
-
-[workspace]
-members = ["dpi"]
-resolver = "2"
-
-[workspace.package]
-edition = "2021"
-license = "Apache-2.0"
-repository = "https://github.com/rust-windowing/winit"
-rust-version = "1.73"
-
-[workspace.dependencies]
-mint = "0.5.6"
-serde = { version = "1", features = ["serde_derive"] }
