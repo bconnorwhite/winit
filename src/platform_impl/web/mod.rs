@@ -29,6 +29,7 @@ mod keyboard;
 mod lock;
 mod main_thread;
 mod monitor;
+mod task;
 mod web_sys;
 mod window;
 
@@ -52,3 +53,13 @@ use self::web_sys as backend;
 pub use self::window::{PlatformSpecificWindowAttributes, Window, WindowId};
 pub(crate) use crate::icon::NoIcon as PlatformIcon;
 pub(crate) use crate::platform_impl::Fullscreen;
+
+pub(self) fn spawn_local<F>(future: F)
+where
+    F: std::future::Future + 'static,
+    F::Output: 'static,
+{
+    task::Task::spawn(Box::pin(async move {
+        future.await;
+    }));
+}
