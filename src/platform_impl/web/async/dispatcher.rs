@@ -3,7 +3,9 @@ use std::cmp::Ordering;
 use std::fmt::{self, Debug, Formatter};
 use std::hash::{Hash, Hasher};
 use std::rc::Rc;
-use std::sync::{Arc, Condvar, Mutex};
+use std::sync::{Arc, Condvar};
+
+use wasm_sync::Mutex;
 
 use super::super::main_thread::MainThreadMarker;
 use super::{channel, Receiver, Sender, Wrapper};
