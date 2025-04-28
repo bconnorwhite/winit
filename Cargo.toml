@@ -8,13 +8,10 @@ authors = [
 description = "Cross-platform window creation library."
 keywords = ["windowing"]
 readme = "README.md"
+exclude = ["/.cargo"]
 documentation = "https://docs.rs/winit"
 categories = ["gui"]
-rust-version.workspace = true
-repository.workspace = true
-license.workspace = true
-edition.workspace = true
-exclude = ["/.cargo"]
+edition = "2021"
 
 [package.metadata.docs.rs]
 features = [
@@ -77,14 +74,10 @@ cfg_aliases = "0.2.1"
 bitflags = "2"
 cursor-icon = "1.1.0"
 dpi = { version = "0.1.1", path = "dpi" }
+serde = { version = "1", features = ["serde_derive"], optional = true }
 rwh_04 = { package = "raw-window-handle", version = "0.4", optional = true }
-rwh_05 = { package = "raw-window-handle", version = "0.5.2", features = [
-    "std",
-], optional = true }
-rwh_06 = { package = "raw-window-handle", version = "0.6", features = [
-    "std",
-], optional = true }
-serde = { workspace = true, optional = true }
+rwh_05 = { package = "raw-window-handle", version = "0.5.2", features = ["std"], optional = true }
+rwh_06 = { package = "raw-window-handle", version = "0.6", features = ["std"], optional = true }
 smol_str = "0.2.0"
 tracing = { version = "0.1.40", default-features = false }
 
@@ -346,16 +339,3 @@ tracing-web = "0.1"
 doc-scrape-examples = true
 name = "window"
 
-[workspace]
-resolver = "2"
-members = ["dpi"]
-
-[workspace.package]
-rust-version = "1.70.0"
-repository = "https://github.com/rust-windowing/winit"
-license = "Apache-2.0"
-edition = "2021"
-
-[workspace.dependencies]
-serde = { version = "1", features = ["serde_derive"] }
-mint = "0.5.6"
