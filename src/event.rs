@@ -978,12 +978,19 @@ pub enum MouseScrollDelta {
 /// [`WindowEvent`].
 #[derive(Debug, Clone)]
 pub struct InnerSizeWriter {
+    #[cfg(not(web_platform))]
     pub(crate) new_inner_size: Weak<Mutex<PhysicalSize<u32>>>,
+    #[cfg(web_platform)]
+    pub(crate) new_inner_size: Weak<wasm_sync::Mutex<PhysicalSize<u32>>>,
 }
 
 impl InnerSizeWriter {
-    #[cfg(not(orbital_platform))]
+    #[cfg(not(any(orbital_platform, web_platform)))]
     pub(crate) fn new(new_inner_size: Weak<Mutex<PhysicalSize<u32>>>) -> Self {
+        Self { new_inner_size }
+    }
+    #[cfg(web_platform)]
+    pub(crate) fn new(new_inner_size: Weak<wasm_sync::Mutex<PhysicalSize<u32>>>) -> Self {
         Self { new_inner_size }
     }
 

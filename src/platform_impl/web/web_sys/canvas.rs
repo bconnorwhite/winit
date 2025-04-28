@@ -1,8 +1,9 @@
 use std::cell::Cell;
 use std::ops::Deref;
 use std::rc::Rc;
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 
+use wasm_sync::Mutex;
 use smol_str::SmolStr;
 use wasm_bindgen::closure::Closure;
 use wasm_bindgen::JsCast;

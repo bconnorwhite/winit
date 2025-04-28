@@ -1,7 +1,9 @@
 use super::super::main_thread::MainThreadMarker;
 use super::{channel, Receiver, Sender, Wrapper};
 use std::cell::Ref;
-use std::sync::{Arc, Condvar, Mutex};
+use std::sync::Arc;
+
+use wasm_sync::{Mutex, Condvar};
 
 pub struct Dispatcher<T: 'static>(Wrapper<T, Sender<Closure<T>>, Closure<T>>);
 
