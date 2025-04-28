@@ -88,7 +88,7 @@ impl MonitorHandle {
             let notifier = Notifier::new();
             let notified = notifier.notified();
 
-            wasm_bindgen_futures::spawn_local(async move {
+            super::spawn_local(async move {
                 notifier.notify(future.await.map(|_| ()).map_err(OrientationLockError::from_js));
             });
 
@@ -503,7 +503,7 @@ impl MonitorHandler {
             let window = window.clone();
             let notifier = Notifier::new();
             let notified = notifier.notified();
-            wasm_bindgen_futures::spawn_local(async move {
+            super::spawn_local(async move {
                 let permission: PermissionStatusExt = match future.await {
                     Ok(permission) => permission.unchecked_into(),
                     Err(error) => unreachable_error(
@@ -584,7 +584,7 @@ impl MonitorHandler {
                     let future = JsFuture::from(window.screen_details());
 
                     let runner = runner.clone();
-                    wasm_bindgen_futures::spawn_local(async move {
+                    super::spawn_local(async move {
                         let details = match future.await {
                             Ok(details) => details.unchecked_into(),
                             Err(error) => unreachable_error(
@@ -776,7 +776,7 @@ impl MonitorPermissionFuture {
     ) {
         let future = JsFuture::from(window.screen_details());
 
-        wasm_bindgen_futures::spawn_local(async move {
+        super::spawn_local(async move {
             match future.await {
                 Ok(details) => {
                     // Notifying `Future`s is not dependant on the lifetime of the runner, because

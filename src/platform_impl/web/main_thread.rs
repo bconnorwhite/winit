@@ -39,7 +39,7 @@ impl<T> MainThreadSafe<T> {
     pub fn new(_: MainThreadMarker, value: T) -> Self {
         DROP_HANDLER.get_or_init(|| {
             let (sender, receiver) = r#async::channel();
-            wasm_bindgen_futures::spawn_local(
+            super::spawn_local(
                 async move { while receiver.next().await.is_ok() {} },
             );
 
