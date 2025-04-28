@@ -28,6 +28,7 @@ mod event_loop;
 mod keyboard;
 mod main_thread;
 mod monitor;
+mod task;
 mod web_sys;
 mod window;
 
@@ -48,3 +49,13 @@ pub(crate) use cursor::{
     CustomCursor as PlatformCustomCursor, CustomCursorFuture,
     CustomCursorSource as PlatformCustomCursorSource,
 };
+
+pub(self) fn spawn_local<F>(future: F)
+where
+    F: std::future::Future + 'static,
+    F::Output: 'static,
+{
+    task::Task::spawn(Box::pin(async move {
+        future.await;
+    }));
+}
