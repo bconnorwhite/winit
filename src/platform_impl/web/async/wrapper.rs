@@ -45,7 +45,7 @@ impl<V, S: Clone + Send, E> Wrapper<V, S, E> {
     ) -> Self {
         let value = Arc::new(RefCell::new(Some(value)));
 
-        wasm_bindgen_futures::spawn_local({
+        super::super::spawn_local({
             let value = Arc::clone(&value);
             async move {
                 receiver(Arc::clone(&value)).await;

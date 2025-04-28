@@ -140,7 +140,7 @@ impl CustomCursor {
             }
         });
 
-        wasm_bindgen_futures::spawn_local(async move {
+        super::spawn_local(async move {
             let _ = task.await;
         });
 
@@ -257,7 +257,7 @@ impl CursorHandler {
                                 handler.borrow_mut().notify();
                             }
                         });
-                        wasm_bindgen_futures::spawn_local(async move {
+                        super::spawn_local(async move {
                             let _ = task.await;
                         });
 
